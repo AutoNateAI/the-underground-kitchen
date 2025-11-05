@@ -29,6 +29,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build static site
+        env:
+          NEXT_PUBLIC_BASE_PATH: '/the-underground-kitchen'
         run: pnpm next build
 
       - name: Deploy to gh-pages branch

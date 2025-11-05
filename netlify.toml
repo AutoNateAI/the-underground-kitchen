@@ -1,0 +1,7 @@
+[build]
+  command = "pnpm next build"
+  publish = "out"
+
+[build.environment]
+  NEXT_PUBLIC_BASE_PATH = ""
+

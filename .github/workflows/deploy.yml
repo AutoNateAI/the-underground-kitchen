@@ -59,6 +59,8 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build with Next.js
+        env:
+          NEXT_PUBLIC_BASE_PATH: '/the-underground-kitchen'
         run: pnpm next build
 
       - name: Upload artifact
