@@ -16,6 +16,14 @@ const LeadSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
+    // API routes don't work with static export
+    if (!adminDb) {
+      return NextResponse.json(
+        { error: 'API routes not available in static export. Please deploy with server support or use client-side Firebase.' },
+        { status: 503 }
+      );
+    }
+
     const body = await req.json();
     const data = LeadSchema.parse(body);
 

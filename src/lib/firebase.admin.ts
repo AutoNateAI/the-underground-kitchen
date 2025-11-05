@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 
-if (!admin.apps.length) {
+// Only initialize if we have credentials (not during static export)
+if (!admin.apps.length && process.env.FIREBASE_PROJECT_ID) {
   const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
   
   admin.initializeApp({
@@ -12,9 +13,9 @@ if (!admin.apps.length) {
   });
 }
 
-export const adminDb = admin.firestore();
-export const adminAuth = admin.auth();
-export const adminStorage = admin.storage();
+export const adminDb = admin.apps.length ? admin.firestore() : null;
+export const adminAuth = admin.apps.length ? admin.auth() : null;
+export const adminStorage = admin.apps.length ? admin.storage() : null;
 
 
 
