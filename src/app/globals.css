@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  body {
+    @apply bg-black text-white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Glassmorphic button */
+  .glass-btn {
+    @apply relative px-6 py-3 rounded-2xl font-semibold text-white;
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply hover:bg-white/20 hover:border-white/30;
+    @apply transition-all duration-300 ease-out;
+    @apply shadow-lg hover:shadow-xl hover:shadow-brand-500/20;
+  }
+
+  .glass-btn-primary {
+    @apply glass-btn bg-brand-500/80 border-brand-400/50;
+    @apply hover:bg-brand-500 hover:border-brand-400;
+    @apply shadow-xl shadow-brand-500/30;
+  }
+
+  /* Glassmorphic card */
+  .glass-card {
+    @apply relative rounded-3xl p-6;
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+    @apply shadow-2xl;
+    @apply transition-all duration-500;
+  }
+
+  .glass-card-hover {
+    @apply glass-card hover:bg-white/10 hover:border-white/20;
+    @apply hover:-translate-y-2 cursor-pointer;
+  }
+
+  /* Input fields with glass effect */
+  .glass-input {
+    @apply w-full px-4 py-3 rounded-xl;
+    @apply bg-white/5 backdrop-blur-md border border-white/20;
+    @apply text-white placeholder:text-white/50;
+    @apply focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500/50;
+    @apply transition-all duration-300;
+  }
+
+  .glass-textarea {
+    @apply glass-input resize-none;
+  }
+
+  /* Navigation glass effect */
+  .glass-nav {
+    @apply fixed top-0 left-0 right-0 z-50;
+    @apply bg-black/40 backdrop-blur-xl border-b border-white/10;
+    @apply transition-all duration-300;
+  }
+
+  /* Section with gradient overlay */
+  .section-gradient {
+    @apply relative bg-gradient-to-br from-brand-600/20 via-purple-600/20 to-pink-600/20;
+  }
+
+  /* Animated gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-400 via-orange-500 to-red-500 bg-clip-text text-transparent;
+    @apply animate-gradient;
+  }
+
+  /* Floating elements */
+  .float-animation {
+    @apply animate-float;
+  }
+
+  /* Glow effect */
+  .glow {
+    @apply animate-glow;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-white/5 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-brand-500/50 rounded-full hover:bg-brand-500;
+  }
+}
+
+/* Animated gradient background */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* Noise texture overlay for depth */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
