@@ -55,14 +55,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v4
-        with:
-          # Automatically injects basePath in your Next.js configuration file and disables
-          # server side image optimization.
-          #
-          # If you want to manage the base path yourself, set this to false and update
-          # next.config.js with the basePath manually.
-          static_site_generator: next
 
       - name: Build with Next.js
         run: pnpm next build
